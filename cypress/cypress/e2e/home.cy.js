@@ -15,12 +15,14 @@ describe('home/landing page', () => {
     cy.get('body').should('contain.text', 'Welcome to Productive!')
   })
   
+  //List all the products
   it('lists the products', () => {
     cy.contains('Products').click()
     cy.contains('bread3')
     cy.contains('Frisches Brot')
   })
-
+  
+  //Create 
   it('creates a new product', () => {
     cy.contains('Products').click()
     cy.contains('Create New Product').click()
@@ -31,11 +33,22 @@ describe('home/landing page', () => {
     cy.contains('Save and Close').click()
   })
 
+  //Update
   it('can update a product', () => {
     // ? how can we check that we have updated the product successfully?
+    cy.contains('Products').click()
+    cy.contains('Edit').click()
+    cy.get('input#name-field').type('update')
+    cy.get('input#sku-field').type('update')
+    cy.get('input#price-field').type('21.00')
+    cy.get('input#stock-field').type('21')
+    cy.contains('Save and Close').click()
   })
 
+  //Delete
   it('can delete a product', () => {
     // ? how can we check that we have deleted the product successfully
+    cy.contains('Products').click()
+    cy.contains('Delete').click()
   })
 })
